@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Lista de Artigos</h2>
+  <a href="{% url 'criar_artigo' %}">Criar novo artigo</a>
+  <ul>
+    {% for artigo in artigos %}
+      <li>
+        <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
+        — por {{ artigo.autor.username }}
+        {% if user == artigo.autor or user in artigo.colaboradores.all %}
+          | <a href="{% url 'editar_artigo' artigo.pk %}">Editar</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>Nenhum artigo encontrado.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -11,7 +11,7 @@
 <h3>Meus Artigos</h3>
 <ul>
     {% for artigo in artigos %}
-        <li><a href="{% url 'article_detail' artigo.id %}">{{ artigo.titulo }}</a></li>
+        <li><a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a></li>
     {% empty %}
         <li>Você ainda não criou nenhum artigo.</li>
     {% endfor %}
