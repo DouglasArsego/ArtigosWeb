@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from .models import Artigo
+from .forms import ArtigoForm
 
 class ArtigoListView(LoginRequiredMixin, ListView):
     model = Artigo
@@ -15,7 +16,7 @@ class ArtigoDetailView(LoginRequiredMixin, DetailView):
 
 class ArtigoCreateView(LoginRequiredMixin, CreateView):
     model = Artigo
-    fields = ['titulo', 'conteudo']
+    form_class = ArtigoForm   # <-- aqui
     template_name = 'artigos/form_artigo.html'
     success_url = reverse_lazy('lista_artigos')
 
@@ -25,11 +26,10 @@ class ArtigoCreateView(LoginRequiredMixin, CreateView):
 
 class ArtigoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Artigo
-    fields = ['titulo', 'conteudo']
+    form_class = ArtigoForm   # <-- e aqui
     template_name = 'artigos/form_artigo.html'
     success_url = reverse_lazy('lista_artigos')
 
     def test_func(self):
         artigo = self.get_object()
         return self.request.user == artigo.autor or self.request.user in artigo.colaboradores.all()
-
