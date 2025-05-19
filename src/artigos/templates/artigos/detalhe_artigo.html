@@ -3,7 +3,7 @@
 {% block content %}
   <h2>{{ object.titulo }}</h2>
   <p><strong>Autor:</strong> {{ object.autor.username }}</p>
-  <p>{{ object.conteudo|linebreaks }}</p>
+  <div>{{ object.conteudo|safe }}</div>
 
   {% if user == object.autor or user in object.colaboradores.all %}
     <a href="{% url 'editar_artigo' object.pk %}">Editar</a>

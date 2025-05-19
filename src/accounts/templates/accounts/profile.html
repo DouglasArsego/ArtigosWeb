@@ -10,10 +10,24 @@
 
 <h3>Meus Artigos</h3>
 <ul>
-    {% for artigo in artigos %}
-        <li><a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a></li>
+    {% for artigo in meus_artigos %}
+        <li>
+            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
+        </li>
     {% empty %}
         <li>Você ainda não criou nenhum artigo.</li>
+    {% endfor %}
+</ul>
+
+<h3>Artigos em que colaboro</h3>
+<ul>
+    {% for artigo in colaboracoes %}
+        <li>
+            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
+            — Autor: {{ artigo.autor.username }}
+        </li>
+    {% empty %}
+        <li>Você ainda não está colaborando em nenhum artigo.</li>
     {% endfor %}
 </ul>
 {% endblock %}

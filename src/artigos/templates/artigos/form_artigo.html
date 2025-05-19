@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %}</h2>
+  <section class="form-container">
+    <h2>{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %}</h2>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.media }}  {# MUITO IMPORTANTE para carregar os arquivos JS e CSS do CKEditor #}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-  </form>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <button type="submit">Salvar</button>
+    </form>
+
+    <p><a href="{% url 'lista_artigos' %}">Voltar para a lista</a></p>
+  </section>
 {% endblock %}
