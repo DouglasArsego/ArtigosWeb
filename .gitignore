@@ -3,6 +3,7 @@
 *.pyo
 *.pyd
 __pycache__/
+/media/
 db.sqlite3
 
 # Django
@@ -13,12 +14,6 @@ db.sqlite3
 *.pyd
 __pycache__/
 staticfiles/
-
-# Docker
-docker-compose.override.yml
-**/.docker
-**/Dockerfile
-**/docker-compose.yml
 
 # IDEs and Editors
 .vscode/
