@@ -3,17 +3,25 @@
 {% block content %}
   <h2>{{ object.titulo }}</h2>
   <p><strong>Autor:</strong> {{ object.autor.username }}</p>
-  <div>{{ object.conteudo|safe }}</div>
 
   {% if user == object.autor or user in object.colaboradores.all %}
-    <a href="{% url 'editar_artigo' object.pk %}">Editar</a>
-  {% endif %}
+    <div>
+      <h4>Conteúdo do artigo:</h4>
+      <div>{{ object.conteudo|safe }}</div>
+      <a href="{% url 'editar_artigo' object.pk %}">Editar</a>
+    </div>
+  {% else %}
+    <div>
+      <h4>Resumo:</h4>
+      <p>{{ object.resumo }}</p>
+    </div>
 
-  {% if user.is_authenticated and user != object.autor %}
-    <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
-      {% csrf_token %}
-      <button type="submit">Solicitar Colaboração</button>
-    </form>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
+        {% csrf_token %}
+        <button type="submit">Solicitar Colaboração</button>
+      </form>
+    {% endif %}
   {% endif %}
 
   <a href="{% url 'lista_artigos' %}">Voltar para a lista</a>

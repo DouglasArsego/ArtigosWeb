@@ -7,7 +7,22 @@
     <form method="post">
       {% csrf_token %}
       {{ form.media }}
-      {{ form.as_p }}
+
+      <p>
+        <label for="{{ form.titulo.id_for_label }}">Título:</label><br>
+        {{ form.titulo }}
+      </p>
+
+      <p>
+        <label for="{{ form.resumo.id_for_label }}">Resumo (visível publicamente):</label><br>
+        {{ form.resumo }}
+      </p>
+
+      <p>
+        <label for="{{ form.conteudo.id_for_label }}">Conteúdo do artigo (apenas para autor e colaboradores):</label><br>
+        {{ form.conteudo }}
+      </p>
+
       <button type="submit">Salvar</button>
     </form>
 

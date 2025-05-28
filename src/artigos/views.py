@@ -11,6 +11,13 @@ class ArtigoDetailView(LoginRequiredMixin, DetailView):
     model = Artigo
     template_name = 'artigos/detalhe_artigo.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        artigo = self.get_object()
+        usuario = self.request.user
+        context['pode_ver_conteudo'] = usuario == artigo.autor or usuario in artigo.colaboradores.all()
+        return context
+
 class ArtigoCreateView(LoginRequiredMixin, CreateView):
     model = Artigo
     form_class = ArtigoForm   

@@ -6,6 +6,7 @@ from accounts.models import CustomUser
 class Artigo(models.Model):
     titulo = models.CharField(max_length=255)
     conteudo = RichTextField()
+    resumo = models.TextField(verbose_name="Resumo do artigo", blank=True)
     autor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='artigos')
     colaboradores = models.ManyToManyField(CustomUser, related_name='artigos_colaborativos', blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
