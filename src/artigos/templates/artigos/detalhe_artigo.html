@@ -9,5 +9,20 @@
     <a href="{% url 'editar_artigo' object.pk %}">Editar</a>
   {% endif %}
 
+  {% if user.is_authenticated and user != object.autor %}
+    <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
+      {% csrf_token %}
+      <button type="submit">Solicitar Colaboração</button>
+    </form>
+  {% endif %}
+
   <a href="{% url 'lista_artigos' %}">Voltar para a lista</a>
+
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 {% endblock %}

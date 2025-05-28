@@ -8,6 +8,7 @@ from django.views.generic import CreateView, TemplateView
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 from django.contrib.auth import get_user_model
+from artigos.models import Artigo, PedidoColaboracao
 
 def home(request):
     return render(request, 'home.html')
@@ -32,4 +33,8 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
         user = self.request.user
         context['meus_artigos'] = Artigo.objects.filter(autor=user).order_by('-id')
         context['colaboracoes'] = Artigo.objects.filter(colaboradores=user).exclude(autor=user).order_by('-id')
+        context['pedidos_recebidos'] = PedidoColaboracao.objects.filter(
+            artigo__autor=user,
+            status='pendente'
+        ).order_by('-created_at')
         return context

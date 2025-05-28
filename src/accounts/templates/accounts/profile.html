@@ -19,7 +19,7 @@
     {% endfor %}
 </ul>
 
-<h3>Artigos em que colaboro</h3>
+<h3>Artigos em que sou colaborador</h3>
 <ul>
     {% for artigo in colaboracoes %}
         <li>
@@ -28,6 +28,23 @@
         </li>
     {% empty %}
         <li>Você ainda não está colaborando em nenhum artigo.</li>
+    {% endfor %}
+</ul>
+
+<h3>Pedidos de Colaboração Recebidos</h3>
+<ul>
+    {% for pedido in pedidos_recebidos %}
+        <li>
+            <strong>{{ pedido.solicitante.username }}</strong> pediu para colaborar no artigo
+            <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
+            <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="decisao" value="aceitar">Aceitar</button>
+                <button type="submit" name="decisao" value="recusar">Recusar</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>Você não possui pedidos pendentes de colaboração.</li>
     {% endfor %}
 </ul>
 {% endblock %}
