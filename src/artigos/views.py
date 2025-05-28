@@ -101,3 +101,9 @@ class PedidoColaboracaoDecidirView(LoginRequiredMixin, View):
 
         pedido.save()
         return redirect('profile')  
+
+def dicas_view(request):
+    return render(request, 'artigos/dicas.html')
+
+def noticias_view(request):
+    return render(request, 'artigos/noticias.html')

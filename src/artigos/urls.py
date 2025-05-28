@@ -10,5 +10,8 @@ urlpatterns = [
     path('pedido-colaboracao/criar/<int:artigo_id>/', views.PedidoColaboracaoCreateView.as_view(), name='pedido_colaboracao_criar'),
     path('pedidos-colaboracao/', views.PedidoColaboracaoListView.as_view(), name='pedidos_colaboracao_recebidos'),
     path('pedido-colaboracao/decidir/<int:pedido_id>/', views.PedidoColaboracaoDecidirView.as_view(), name='pedido_colaboracao_decidir'),
+
+    path('dicas/', views.dicas_view, name='dicas'),
+    path('noticias/', views.noticias_view, name='noticias'),
 ]
 
