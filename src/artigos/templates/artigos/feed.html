@@ -7,7 +7,7 @@
   {% for artigo in artigos %}
     <li>
       <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
-      — por {{ artigo.autor.username }}
+      — por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
       {% if user == artigo.autor or user in artigo.colaboradores.all %}
         | <a href="{% url 'editar_artigo' artigo.pk %}">Editar</a>
       {% endif %}

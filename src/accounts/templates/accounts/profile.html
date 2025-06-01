@@ -5,6 +5,7 @@
 {% block content %}
 <h2>Perfil de {{ user.username }}</h2>
 <p><strong>Nome completo:</strong> {{ user.nome_completo }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
 <p><strong>Formação acadêmica:</strong> {{ user.formacao_academica }}</p>
 <p><strong>Biografia:</strong> {{ user.biografia }}</p>
 
@@ -35,7 +36,7 @@
 <ul>
     {% for pedido in pedidos_recebidos %}
         <li>
-            <strong>{{ pedido.solicitante.username }}</strong> pediu para colaborar no artigo
+            <strong><a href="{% url 'perfil_publico' pedido.solicitante.username %}">{{ pedido.solicitante.username }}</a></strong> pediu para colaborar no artigo
             <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
             <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}" style="display:inline;">
                 {% csrf_token %}

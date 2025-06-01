@@ -45,6 +45,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # CKEditor
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
+LOGIN_REDIRECT_URL = '/sobre/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -100,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True

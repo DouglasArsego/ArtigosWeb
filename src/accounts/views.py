@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from artigos.models import Artigo
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, DetailView
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 from django.contrib.auth import get_user_model
@@ -38,3 +38,10 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             status='pendente'
         ).order_by('-created_at')
         return context
+
+class PublicUserProfileView(DetailView):
+    model = CustomUser
+    template_name = 'accounts/public_profile.html'
+    context_object_name = 'perfil_usuario'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'

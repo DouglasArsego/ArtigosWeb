@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Perfil de {{ perfil_usuario.username }}{% endblock %}
+
+{% block content %}
+<h2>Perfil público de {{ perfil_usuario.username }}</h2>
+<p><strong>Nome completo:</strong> {{ perfil_usuario.nome_completo }}</p>
+<p><strong>Email:</strong> {{ perfil_usuario.email }}</p>
+<p><strong>Formação acadêmica:</strong> {{ perfil_usuario.formacao_academica }}</p>
+<p><strong>Biografia:</strong> {{ perfil_usuario.biografia }}</p>
+
+<h3>Artigos publicados</h3>
+<ul>
+  {% for artigo in perfil_usuario.artigo_set.all %}
+    <li><a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a></li>
+  {% empty %}
+    <li>Nenhum artigo publicado ainda.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

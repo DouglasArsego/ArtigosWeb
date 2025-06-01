@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from accounts.views import home 
+from accounts.views import home
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
+    path('sobre/', TemplateView.as_view(template_name='sobre.html'), name='sobre'),
     path('accounts/', include('accounts.urls')),
     path('artigos/', include('artigos.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
