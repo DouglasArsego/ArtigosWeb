@@ -1,11 +1,11 @@
 
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from artigos.models import Artigo
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, DetailView
-from .forms import CustomUserCreationForm
+from django.views.generic import CreateView, TemplateView, DetailView, UpdateView
+from .forms import CustomUserCreationForm, CustomUserEditForm
 from .models import CustomUser
 from django.contrib.auth import get_user_model
 from artigos.models import Artigo, PedidoColaboracao
@@ -45,3 +45,16 @@ class PublicUserProfileView(DetailView):
     context_object_name = 'perfil_usuario'
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+
+class EditarPerfilView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = CustomUser
+    form_class = CustomUserEditForm
+    template_name = 'accounts/editar_perfil.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user
+
+    def test_func(self):
+        return self.request.user.is_authenticated

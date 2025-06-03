@@ -6,8 +6,10 @@
 <h2>Perfil de {{ user.username }}</h2>
 <p><strong>Nome completo:</strong> {{ user.nome_completo }}</p>
 <p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Formação acadêmica:</strong> {{ user.formacao_academica }}</p>
+<p><strong>Formação Acadêmica:</strong> {{ user.formacao_academica }}</p>
 <p><strong>Biografia:</strong> {{ user.biografia }}</p>
+<a href="{% url 'editar_perfil' %}">Editar perfil</a>
+
 
 <h3>Meus Artigos</h3>
 <ul>
@@ -25,12 +27,13 @@
     {% for artigo in colaboracoes %}
         <li>
             <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
-            — Autor: {{ artigo.autor.username }}
+            — Autor: <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
         </li>
     {% empty %}
         <li>Você ainda não está colaborando em nenhum artigo.</li>
     {% endfor %}
 </ul>
+
 
 <h3>Pedidos de Colaboração Recebidos</h3>
 <ul>
