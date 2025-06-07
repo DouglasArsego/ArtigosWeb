@@ -1,0 +1,223 @@
+/* Feed Page Specific Styles */
+
+.feed-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.feed-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--secondary-900);
+  margin: 0;
+}
+
+.feed-create-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-weight: 600;
+}
+
+.feed-create-btn::before {
+  content: "+";
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.feed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feed-item {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--neutral-200);
+  margin-bottom: var(--space-6);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.feed-item:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.feed-item:last-child {
+  margin-bottom: 0;
+}
+
+.feed-item-content {
+  padding: var(--space-6);
+}
+
+.feed-item-title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-tight);
+}
+
+.feed-item-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.feed-item-title a:hover {
+  color: var(--primary-600);
+}
+
+.feed-item-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--secondary-600);
+  margin-bottom: var(--space-4);
+}
+
+.feed-item-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.feed-item-author a {
+  color: var(--secondary-700);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.feed-item-author a:hover {
+  color: var(--primary-600);
+}
+
+.feed-item-date {
+  font-size: var(--text-xs);
+  color: var(--secondary-500);
+}
+
+.feed-item-excerpt {
+  color: var(--secondary-700);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.feed-item-actions {
+  padding: var(--space-4) var(--space-6);
+  background-color: var(--neutral-50);
+  border-top: 1px solid var(--neutral-200);
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.feed-item-actions .btn {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+.feed-item-read-more {
+  color: var(--primary-600);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--text-sm);
+}
+
+.feed-item-read-more:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+}
+
+.feed-empty {
+  text-align: center;
+  padding: var(--space-16);
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--neutral-200);
+}
+
+.feed-empty-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--neutral-100);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  font-size: var(--text-3xl);
+  color: var(--neutral-400);
+}
+
+.feed-empty h3 {
+  font-size: var(--text-xl);
+  color: var(--secondary-700);
+  margin-bottom: var(--space-3);
+}
+
+.feed-empty p {
+  color: var(--secondary-500);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .feed-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .feed-item-content {
+    padding: var(--space-4);
+  }
+
+  .feed-item-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .feed-item-actions {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .feed-empty {
+    padding: var(--space-12);
+  }
+}
+
+@media (max-width: 480px) {
+  .feed-container {
+    padding: 0 var(--space-3);
+  }
+
+  .feed-title {
+    font-size: var(--text-2xl);
+  }
+
+  .feed-empty-icon {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-2xl);
+  }
+}

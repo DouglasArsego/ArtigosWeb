@@ -1,11 +1,150 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% load static %}
 
-{% block title %}Registrar{% endblock %} 
+{% block title %}Registrar - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Registro</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Registrar</button>
-</form>
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h2>Criar sua conta</h2>
+      <p>Junte-se à nossa comunidade de escritores colaborativos</p>
+    </div>
+
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="{{ form.username.id_for_label }}" class="form-label">
+          {{ form.username.label }}
+        </label>
+        {{ form.username|add_class:"form-input" }}
+        {% if form.username.errors %}
+          <ul class="errorlist">
+            {% for error in form.username.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if form.username.help_text %}
+          <div class="form-help">{{ form.username.help_text }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.email.id_for_label }}" class="form-label">
+          {{ form.email.label }}
+        </label>
+        {{ form.email|add_class:"form-input" }}
+        {% if form.email.errors %}
+          <ul class="errorlist">
+            {% for error in form.email.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.nome_completo.id_for_label }}" class="form-label">
+          {{ form.nome_completo.label }}
+        </label>
+        {{ form.nome_completo|add_class:"form-input" }}
+        {% if form.nome_completo.errors %}
+          <ul class="errorlist">
+            {% for error in form.nome_completo.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.formacao_academica.id_for_label }}" class="form-label">
+          {{ form.formacao_academica.label }}
+        </label>
+        {{ form.formacao_academica|add_class:"form-input" }}
+        {% if form.formacao_academica.errors %}
+          <ul class="errorlist">
+            {% for error in form.formacao_academica.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.biografia.id_for_label }}" class="form-label">
+          {{ form.biografia.label }}
+        </label>
+        {{ form.biografia|add_class:"form-textarea" }}
+        {% if form.biografia.errors %}
+          <ul class="errorlist">
+            {% for error in form.biografia.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.password1.id_for_label }}" class="form-label">
+          {{ form.password1.label }}
+        </label>
+        {{ form.password1|add_class:"form-input" }}
+        {% if form.password1.errors %}
+          <ul class="errorlist">
+            {% for error in form.password1.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if form.password1.help_text %}
+          <div class="password-help">
+            <h4>Requisitos da senha:</h4>
+            <ul>
+              <li>Pelo menos 8 caracteres</li>
+              <li>Não pode ser muito comum</li>
+              <li>Não pode ser apenas numérica</li>
+              <li>Não pode ser muito similar às suas outras informações</li>
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.password2.id_for_label }}" class="form-label">
+          {{ form.password2.label }}
+        </label>
+        {{ form.password2|add_class:"form-input" }}
+        {% if form.password2.errors %}
+          <ul class="errorlist">
+            {% for error in form.password2.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary register-submit">Criar conta</button>
+    </form>
+
+    <div class="register-links">
+      <p>Já tem uma conta?</p>
+      <a href="{% url 'login' %}">Fazer login</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

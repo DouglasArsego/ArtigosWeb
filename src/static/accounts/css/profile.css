@@ -1,0 +1,231 @@
+/* Profile Page Specific Styles */
+
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--neutral-200);
+  margin-bottom: var(--space-8);
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.profile-details h2 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-2);
+}
+
+.profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.profile-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--secondary-600);
+}
+
+.profile-meta-label {
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.profile-section {
+  background: white;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--neutral-200);
+  margin-bottom: var(--space-6);
+}
+
+.profile-section h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--neutral-100);
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-item {
+  padding: var(--space-4);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.article-item:hover {
+  border-color: var(--primary-300);
+  background-color: var(--primary-50);
+}
+
+.article-item:last-child {
+  margin-bottom: 0;
+}
+
+.article-title {
+  font-weight: 600;
+  color: var(--primary-700);
+  text-decoration: none;
+  font-size: var(--text-base);
+}
+
+.article-title:hover {
+  color: var(--primary-800);
+  text-decoration: underline;
+}
+
+.article-author {
+  font-size: var(--text-sm);
+  color: var(--secondary-600);
+  margin-top: var(--space-1);
+}
+
+.article-author a {
+  color: var(--secondary-700);
+  text-decoration: none;
+}
+
+.article-author a:hover {
+  color: var(--primary-600);
+  text-decoration: underline;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--secondary-500);
+  font-style: italic;
+}
+
+/* Collaboration Requests */
+.request-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.request-item {
+  padding: var(--space-4);
+  border: 1px solid var(--warning-200);
+  border-radius: var(--radius-md);
+  background-color: var(--warning-50);
+  margin-bottom: var(--space-3);
+}
+
+.request-item:last-child {
+  margin-bottom: 0;
+}
+
+.request-content {
+  margin-bottom: var(--space-3);
+}
+
+.request-content strong {
+  color: var(--secondary-900);
+}
+
+.request-content a {
+  color: var(--primary-600);
+  text-decoration: none;
+}
+
+.request-content a:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+}
+
+.request-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.request-actions .btn {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .profile-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profile-meta-item {
+    justify-content: center;
+  }
+
+  .profile-section {
+    padding: var(--space-4);
+  }
+
+  .request-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header {
+    padding: var(--space-6);
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-xl);
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+}

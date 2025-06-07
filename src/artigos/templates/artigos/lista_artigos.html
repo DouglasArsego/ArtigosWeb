@@ -1,19 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Artigos - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/lista_artigos.css' %}">
+{% endblock %}
 
 {% block content %}
-  <h2>Lista de Artigos</h2>
-  <a href="{% url 'criar_artigo' %}">Criar novo artigo</a>
-  <ul>
-    {% for artigo in artigos %}
-      <li>
-        <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
-        — por {{ artigo.autor.username }}
-        {% if user == artigo.autor or user in artigo.colaboradores.all %}
-          | <a href="{% url 'editar_artigo' artigo.pk %}">Editar</a>
-        {% endif %}
-      </li>
-    {% empty %}
-      <li>Nenhum artigo encontrado.</li>
-    {% endfor %}
-  </ul>
+<div class="articles-container">
+  <div class="articles-header">
+    <h2 class="articles-title">Lista de Artigos</h2>
+    {% if user.is_authenticated %}
+      <a href="{% url 'criar_artigo' %}" class="btn btn-primary articles-create-btn">Criar novo artigo</a>
+    {% endif %}
+  </div>
+
+  {% if artigos %}
+    <div class="articles-grid">
+      {% for artigo in artigos %}
+        <div class="article-card">
+          <div class="article-card-header">
+            <h3 class="article-card-title">
+              <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
+            </h3>
+            <div class="article-card-meta">
+              <div class="article-card-author">
+                por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
+              </div>
+              <div class="article-card-date">
+                {{ artigo.criado_em|date:"d/m/Y" }}
+              </div>
+            </div>
+          </div>
+          
+          {% if user == artigo.autor or user in artigo.colaboradores.all %}
+            <div class="article-card-actions">
+              <a href="{% url 'editar_artigo' artigo.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'detalhe_artigo' artigo.pk %}" class="btn btn-outline btn-sm">Ver detalhes</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="articles-empty">
+      <div class="articles-empty-icon">📝</div>
+      <h3>Nenhum artigo encontrado</h3>
+      <p>Seja o primeiro a criar um artigo na plataforma!</p>
+      {% if user.is_authenticated %}
+        <a href="{% url 'criar_artigo' %}" class="btn btn-primary">Criar primeiro artigo</a>
+      {% else %}
+        <a href="{% url 'register' %}" class="btn btn-primary">Registrar-se para criar artigos</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
 {% endblock %}

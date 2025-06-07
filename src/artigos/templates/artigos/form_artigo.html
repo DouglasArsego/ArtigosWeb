@@ -1,31 +1,91 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %} - Artigos Web
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/form_artigo.css' %}">
+{% endblock %}
 
 {% block content %}
-  <section class="form-container">
-    <h2>{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %}</h2>
+<div class="article-form-container">
+  <div class="article-form-card">
+    <div class="article-form-header">
+      <h2>{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %}</h2>
+      <p>{% if form.instance.pk %}Atualize as informações do seu artigo{% else %}Compartilhe seu conhecimento com a comunidade{% endif %}</p>
+    </div>
 
-    <form method="post">
+    <form method="post" class="article-form">
       {% csrf_token %}
       {{ form.media }}
 
-      <p>
-        <label for="{{ form.titulo.id_for_label }}">Título:</label><br>
-        {{ form.titulo }}
-      </p>
+      <div class="form-group">
+        <label for="{{ form.titulo.id_for_label }}" class="form-label">
+          {{ form.titulo.label }}
+        </label>
+        {{ form.titulo|add_class:"form-input" }}
+        {% if form.titulo.errors %}
+          <ul class="errorlist">
+            {% for error in form.titulo.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
 
-      <p>
-        <label for="{{ form.resumo.id_for_label }}">Resumo (visível publicamente):</label><br>
-        {{ form.resumo }}
-      </p>
+      <div class="form-group">
+        <label for="{{ form.resumo.id_for_label }}" class="form-label">
+          {{ form.resumo.label }}
+        </label>
+        {{ form.resumo|add_class:"form-textarea" }}
+        {% if form.resumo.errors %}
+          <ul class="errorlist">
+            {% for error in form.resumo.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <div class="article-form-help">
+          <h4>Sobre o resumo:</h4>
+          <p>O resumo é visível publicamente e ajuda outros usuários a entender do que se trata seu artigo. O conteúdo completo só é acessível para você e seus colaboradores.</p>
+        </div>
+      </div>
 
-      <p>
-        <label for="{{ form.conteudo.id_for_label }}">Conteúdo do artigo (apenas para autor e colaboradores):</label><br>
+      <div class="form-group">
+        <label for="{{ form.conteudo.id_for_label }}" class="form-label">
+          {{ form.conteudo.label }}
+        </label>
         {{ form.conteudo }}
-      </p>
+        {% if form.conteudo.errors %}
+          <ul class="errorlist">
+            {% for error in form.conteudo.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <div class="article-form-help">
+          <h4>Sobre o conteúdo:</h4>
+          <p>Este é o conteúdo completo do seu artigo. Apenas você e colaboradores aprovados terão acesso a esta seção.</p>
+        </div>
+      </div>
 
-      <button type="submit">Salvar</button>
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <div class="article-form-actions">
+        <a href="{% url 'lista_artigos' %}" class="article-form-back">Voltar para a lista</a>
+        <button type="submit" class="btn btn-primary article-form-submit">
+          {% if form.instance.pk %}Atualizar artigo{% else %}Criar artigo{% endif %}
+        </button>
+      </div>
     </form>
-
-    <p><a href="{% url 'lista_artigos' %}">Voltar para a lista</a></p>
-  </section>
+  </div>
+</div>
 {% endblock %}

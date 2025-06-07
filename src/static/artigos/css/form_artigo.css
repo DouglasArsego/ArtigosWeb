@@ -1,0 +1,216 @@
+/* Article Form Page Specific Styles */
+
+.article-form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+}
+
+.article-form-card {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+}
+
+.article-form-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.article-form-header h2 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-2);
+}
+
+.article-form-header p {
+  color: var(--secondary-600);
+  margin: 0;
+}
+
+.article-form .form-group {
+  margin-bottom: var(--space-6);
+}
+
+.article-form .form-label {
+  font-weight: 600;
+  color: var(--secondary-700);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-3);
+}
+
+.article-form .form-input,
+.article-form .form-textarea {
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  border: 2px solid var(--neutral-200);
+  transition: all var(--transition-normal);
+}
+
+.article-form .form-input:focus,
+.article-form .form-textarea:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.article-form .form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* CKEditor Styling */
+.article-form .django-ckeditor-widget {
+  margin-top: var(--space-2);
+}
+
+.article-form .cke {
+  border: 2px solid var(--neutral-200) !important;
+  border-radius: var(--radius-md) !important;
+  transition: all var(--transition-normal);
+}
+
+.article-form .cke:focus-within {
+  border-color: var(--primary-500) !important;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.article-form .cke_top {
+  background: var(--neutral-50) !important;
+  border-bottom: 1px solid var(--neutral-200) !important;
+  border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+}
+
+.article-form .cke_contents {
+  min-height: 300px !important;
+}
+
+.article-form .cke_bottom {
+  background: var(--neutral-50) !important;
+  border-top: 1px solid var(--neutral-200) !important;
+  border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+}
+
+.article-form-help {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.article-form-help h4 {
+  color: var(--primary-800);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.article-form-help p {
+  color: var(--primary-700);
+  font-size: var(--text-sm);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+.article-form-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--neutral-200);
+}
+
+.article-form-submit {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.article-form-back {
+  color: var(--secondary-600);
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.article-form-back:hover {
+  color: var(--secondary-800);
+  background-color: var(--neutral-100);
+  text-decoration: none;
+}
+
+.article-form-back::before {
+  content: "←";
+  font-size: var(--text-lg);
+}
+
+/* Form Error Styling */
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0 0;
+}
+
+.errorlist li {
+  color: var(--error-600);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: var(--error-500);
+}
+
+.form-input.error:focus,
+.form-textarea.error:focus {
+  border-color: var(--error-500);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 768px) {
+  .article-form-container {
+    padding: var(--space-4);
+  }
+
+  .article-form-card {
+    padding: var(--space-6);
+  }
+
+  .article-form-header h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .article-form-actions {
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+  }
+
+  .article-form-submit {
+    width: 100%;
+  }
+
+  .article-form .cke_contents {
+    min-height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-form-card {
+    padding: var(--space-4);
+  }
+
+  .article-form .cke_contents {
+    min-height: 200px !important;
+  }
+}

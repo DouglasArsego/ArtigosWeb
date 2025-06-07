@@ -1,8 +1,136 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Notícias sobre publicações{% endblock %}
+{% block title %}Notícias sobre publicações - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/noticias.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Notícias sobre Revistas e Publicações</h2>
-<p>Aqui serão exibidas notícias relevantes do meio acadêmico e científico.</p>
+<div class="noticias-container">
+  <div class="noticias-header">
+    <h2>Notícias sobre Revistas e Publicações</h2>
+    <p>Mantenha-se atualizado com as últimas novidades do meio acadêmico e científico</p>
+  </div>
+
+  <div class="noticias-featured">
+    <h3>Destaque da Semana</h3>
+    <p>Novas diretrizes para publicação científica em 2025: O que mudou e como se adaptar às novas exigências de transparência e reprodutibilidade na pesquisa.</p>
+    <a href="#" class="btn">Ler mais</a>
+  </div>
+
+  <div class="noticias-layout">
+    <div class="noticias-main">
+      <div class="noticias-grid">
+        <article class="noticia-card">
+          <div class="noticia-image">📊</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Pesquisa</span>
+            <h4>Tendências em Publicação Científica 2025</h4>
+            <p>Análise das principais tendências que estão moldando o futuro das publicações acadêmicas, incluindo acesso aberto e revisão por pares.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">15 Jan 2025</span>
+              <a href="#" class="noticia-source">Nature Publishing</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-image">🔬</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Tecnologia</span>
+            <h4>IA na Revisão de Artigos Científicos</h4>
+            <p>Como a inteligência artificial está revolucionando o processo de revisão por pares e melhorando a qualidade das publicações.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">12 Jan 2025</span>
+              <a href="#" class="noticia-source">Science Magazine</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-image">📚</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Acesso Aberto</span>
+            <h4>Crescimento do Movimento Open Access</h4>
+            <p>Estatísticas mostram crescimento de 40% nas publicações de acesso aberto em 2024, democratizando o conhecimento científico.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">10 Jan 2025</span>
+              <a href="#" class="noticia-source">PLOS ONE</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-image">🌍</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Global</span>
+            <h4>Colaboração Internacional em Pesquisa</h4>
+            <p>Estudo revela aumento significativo na colaboração internacional entre pesquisadores de diferentes continentes.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">8 Jan 2025</span>
+              <a href="#" class="noticia-source">Research Trends</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-image">💡</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Inovação</span>
+            <h4>Novas Métricas de Impacto Científico</h4>
+            <p>Além do fator de impacto tradicional, novas métricas estão sendo desenvolvidas para avaliar a relevância social da pesquisa.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">5 Jan 2025</span>
+              <a href="#" class="noticia-source">Altmetric</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="noticia-card">
+          <div class="noticia-image">🎓</div>
+          <div class="noticia-content">
+            <span class="noticia-category">Educação</span>
+            <h4>Formação de Novos Pesquisadores</h4>
+            <p>Universidades implementam novos programas para ensinar boas práticas de publicação científica desde a graduação.</p>
+            <div class="noticia-meta">
+              <span class="noticia-date">3 Jan 2025</span>
+              <a href="#" class="noticia-source">Higher Education</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="noticias-sidebar">
+      <h3>Destaques Rápidos</h3>
+      
+      <div class="sidebar-item">
+        <h4>Nova Revista de IA</h4>
+        <p>Lançamento da "AI Research Quarterly" focada em aplicações práticas.</p>
+      </div>
+
+      <div class="sidebar-item">
+        <h4>Conferência ICML 2025</h4>
+        <p>Inscrições abertas até março. Tema: "Machine Learning for Social Good".</p>
+      </div>
+
+      <div class="sidebar-item">
+        <h4>Prêmio Jovem Pesquisador</h4>
+        <p>Candidaturas abertas para o prêmio de melhor artigo por pesquisador sub-30.</p>
+      </div>
+
+      <div class="sidebar-item">
+        <h4>Workshop de Escrita</h4>
+        <p>Curso online gratuito sobre escrita científica eficaz começa em fevereiro.</p>
+      </div>
+
+      <div class="sidebar-item">
+        <h4>Mudanças na CAPES</h4>
+        <p>Novos critérios de avaliação para programas de pós-graduação em 2025.</p>
+      </div>
+    </aside>
+  </div>
+</div>
 {% endblock %}

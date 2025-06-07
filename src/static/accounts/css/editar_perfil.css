@@ -1,0 +1,138 @@
+/* Edit Profile Page Specific Styles */
+
+.edit-profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+}
+
+.edit-profile-card {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+}
+
+.edit-profile-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.edit-profile-header h2 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-2);
+}
+
+.edit-profile-header p {
+  color: var(--secondary-600);
+  margin: 0;
+}
+
+.edit-profile-form .form-group {
+  margin-bottom: var(--space-5);
+}
+
+.edit-profile-form .form-label {
+  font-weight: 600;
+  color: var(--secondary-700);
+}
+
+.edit-profile-form .form-input,
+.edit-profile-form .form-textarea {
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  border: 2px solid var(--neutral-200);
+  transition: all var(--transition-normal);
+}
+
+.edit-profile-form .form-input:focus,
+.edit-profile-form .form-textarea:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.edit-profile-form .form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.edit-profile-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--neutral-200);
+}
+
+.edit-profile-submit {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.edit-profile-cancel {
+  color: var(--secondary-600);
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.edit-profile-cancel:hover {
+  color: var(--secondary-800);
+  background-color: var(--neutral-100);
+  text-decoration: none;
+}
+
+/* Form Error Styling */
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0 0;
+}
+
+.errorlist li {
+  color: var(--error-600);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: var(--error-500);
+}
+
+.form-input.error:focus,
+.form-textarea.error:focus {
+  border-color: var(--error-500);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 768px) {
+  .edit-profile-container {
+    padding: var(--space-4);
+  }
+
+  .edit-profile-card {
+    padding: var(--space-6);
+  }
+
+  .edit-profile-header h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .edit-profile-actions {
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+  }
+
+  .edit-profile-submit {
+    width: 100%;
+  }
+}

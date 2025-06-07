@@ -1,0 +1,165 @@
+/* Register Page Specific Styles */
+
+.register-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+}
+
+.register-card {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.register-header h2 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--secondary-900);
+  margin-bottom: var(--space-2);
+}
+
+.register-header p {
+  color: var(--secondary-600);
+  margin: 0;
+}
+
+.register-form .form-group {
+  margin-bottom: var(--space-5);
+}
+
+.register-form .form-label {
+  font-weight: 600;
+  color: var(--secondary-700);
+}
+
+.register-form .form-input,
+.register-form .form-textarea {
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  border: 2px solid var(--neutral-200);
+  transition: all var(--transition-normal);
+}
+
+.register-form .form-input:focus,
+.register-form .form-textarea:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.register-form .form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.register-submit {
+  width: 100%;
+  padding: var(--space-4);
+  font-size: var(--text-base);
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+}
+
+.register-links {
+  text-align: center;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--neutral-200);
+}
+
+.register-links p {
+  color: var(--secondary-600);
+  margin-bottom: var(--space-3);
+}
+
+.register-links a {
+  color: var(--primary-600);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.register-links a:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+}
+
+/* Password Help Text */
+.password-help {
+  background: var(--neutral-50);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-200);
+  margin-top: var(--space-3);
+}
+
+.password-help h4 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--secondary-700);
+  margin-bottom: var(--space-2);
+}
+
+.password-help ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.password-help li {
+  font-size: var(--text-xs);
+  color: var(--secondary-600);
+  margin-bottom: var(--space-1);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.password-help li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--secondary-400);
+}
+
+/* Form Error Styling */
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0 0;
+}
+
+.errorlist li {
+  color: var(--error-600);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: var(--error-500);
+}
+
+.form-input.error:focus,
+.form-textarea.error:focus {
+  border-color: var(--error-500);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: var(--space-4);
+  }
+
+  .register-card {
+    padding: var(--space-6);
+  }
+
+  .register-header h2 {
+    font-size: var(--text-2xl);
+  }
+}

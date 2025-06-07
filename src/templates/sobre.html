@@ -1,17 +1,49 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Sobre - Artigos Web{% endblock %}
 
-{% block content %}
-  <h1>Sobre o Artigos Web</h1>
-  <p>O <strong>Artigos Web</strong> é uma plataforma colaborativa onde usuários podem escrever, editar e publicar artigos em conjunto.</p>
-  
-  <h2>Objetivos do Projeto</h2>
-  <ul>
-    <li>Fomentar a escrita colaborativa entre usuários.</li>
-    <li>Promover coautoria de textos em tempo real.</li>
-    <li>Permitir controle e aprovação de colaborações.</li>
-  </ul>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock %}
 
-  <p>Projeto acadêmico desenvolvido por Douglas Arsego.</p>
+{% block content %}
+<div class="sobre-container">
+  <div class="sobre-header">
+    <h1>Sobre o Artigos Web</h1>
+    <p>Uma plataforma inovadora para escrita colaborativa e compartilhamento de conhecimento</p>
+  </div>
+
+  <div class="sobre-content">
+    <p>O <strong>Artigos Web</strong> é uma plataforma colaborativa onde usuários podem escrever, editar e publicar artigos em conjunto, promovendo o compartilhamento de conhecimento e a criação de conteúdo de alta qualidade.</p>
+    
+    <h2>Objetivos do Projeto</h2>
+    <ul>
+      <li>Fomentar a escrita colaborativa entre usuários de diferentes áreas do conhecimento</li>
+      <li>Promover coautoria de textos com ferramentas modernas e intuitivas</li>
+      <li>Permitir controle e aprovação de colaborações de forma segura e transparente</li>
+      <li>Criar uma biblioteca de conhecimento acessível e organizada</li>
+      <li>Facilitar a troca de experiências e expertise entre profissionais</li>
+      <li>Democratizar o acesso à produção e publicação de conteúdo acadêmico</li>
+    </ul>
+
+    <h2>Como Funciona</h2>
+    <p>Nossa plataforma permite que você:</p>
+    <ul>
+      <li>Crie artigos com editor de texto rico e recursos avançados</li>
+      <li>Convide colaboradores para trabalhar em seus projetos</li>
+      <li>Gerencie permissões e controle de acesso aos seus conteúdos</li>
+      <li>Explore artigos de outros autores e solicite colaboração</li>
+      <li>Acompanhe o progresso de seus projetos colaborativos</li>
+      <li>Publique e compartilhe conhecimento com a comunidade</li>
+    </ul>
+
+    <h2>Nossa Missão</h2>
+    <p>Acreditamos que o conhecimento deve ser construído de forma colaborativa. Nossa missão é fornecer as ferramentas necessárias para que pesquisadores, acadêmicos, profissionais e entusiastas possam trabalhar juntos na criação de conteúdo relevante e de qualidade.</p>
+  </div>
+
+  <div class="sobre-footer">
+    <p>Projeto acadêmico desenvolvido por <strong>Douglas Arsego</strong></p>
+  </div>
+</div>
 {% endblock %}
