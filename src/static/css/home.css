@@ -1,0 +1,148 @@
+
+:root {
+    --primary-dark: #1a5276;
+    --primary-medium: #2980b9;
+    --primary-light: #3498db;
+    --light-gray: #ecf0f1;
+    --dark-blue: #2c3e50;
+    --pure-white: #ffffff;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--dark-blue);
+    line-height: 1.6;
+}
+
+
+.gradient-bg {
+    background: linear-gradient(to bottom, 
+        var(--primary-dark) 0%, 
+        var(--primary-light) 50%, 
+        var(--pure-white) 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+
+
+.main-title {
+    color: var(--pure-white);
+    font-weight: 800;
+    font-size: 5rem; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+    margin-top: 3rem;  
+    padding-bottom: 2rem;  
+}
+
+.tagline {
+    color: var(--dark-blue);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+
+.auth-box {
+    background-color: var(--pure-white);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.btn-primary {
+    background-color: var(--primary-medium);
+    border-color: var(--primary-medium);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: var(--primary-medium);
+    border-color: var(--primary-medium);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-medium);
+    border-color: var(--primary-medium);
+    color: var(--pure-white);
+}
+
+
+footer {
+    background-color: var(--primary-dark);
+    color: var(--pure-white);
+}
+
+.admin-link {
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.admin-link:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+
+.btn {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 992px) {
+    .main-title {
+        font-size: 3.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    
+    .tagline {
+        font-size: 1.4rem;
+    }
+    
+    .auth-box {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .auth-box {
+        padding: 1.5rem;
+    }
+}
