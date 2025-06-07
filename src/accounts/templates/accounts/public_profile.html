@@ -1,62 +1,19 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Perfil de {{ perfil_usuario.username }} - Artigos Web{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'accounts/css/public_profile.css' %}">
-{% endblock %}
+{% block title %}Perfil de {{ perfil_usuario.username }}{% endblock %}
 
 {% block content %}
-<div class="public-profile-container">
-  <!-- Profile Header -->
-  <div class="public-profile-header">
-    <div class="public-profile-avatar">
-      {{ perfil_usuario.nome_completo|first|upper }}
-    </div>
-    
-    <h2 class="public-profile-name">{{ perfil_usuario.nome_completo }}</h2>
-    <p class="public-profile-username">@{{ perfil_usuario.username }}</p>
-    
-    <div class="public-profile-details">
-      <div class="public-profile-field">
-        <strong>Email:</strong>
-        <span>{{ perfil_usuario.email }}</span>
-      </div>
-      
-      {% if perfil_usuario.formacao_academica %}
-      <div class="public-profile-field">
-        <strong>Formação Acadêmica:</strong>
-        <span>{{ perfil_usuario.formacao_academica }}</span>
-      </div>
-      {% endif %}
-      
-      {% if perfil_usuario.biografia %}
-      <div class="public-profile-field public-profile-bio">
-        <strong>Biografia:</strong>
-        <span>{{ perfil_usuario.biografia }}</span>
-      </div>
-      {% endif %}
-    </div>
-  </div>
+<h2>Perfil público de {{ perfil_usuario.username }}</h2>
+<p><strong>Nome completo:</strong> {{ perfil_usuario.nome_completo }}</p>
+<p><strong>Email:</strong> {{ perfil_usuario.email }}</p>
+<p><strong>Formação acadêmica:</strong> {{ perfil_usuario.formacao_academica }}</p>
+<p><strong>Biografia:</strong> {{ perfil_usuario.biografia }}</p>
 
-  <!-- Published Articles -->
-  <div class="public-articles">
-    <h3>Artigos Publicados</h3>
-    {% if perfil_usuario.artigo_set.all %}
-      <ul class="public-article-list">
-        {% for artigo in perfil_usuario.artigo_set.all %}
-          <li class="public-article-item">
-            <a href="{% url 'detalhe_artigo' artigo.id %}" class="public-article-title">{{ artigo.titulo }}</a>
-            <div class="text-muted text-small">Publicado em {{ artigo.criado_em|date:"d/m/Y" }}</div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="public-empty-state">
-        <p>Este usuário ainda não publicou nenhum artigo.</p>
-      </div>
-    {% endif %}
-  </div>
-</div>
+<h3>Artigos publicados</h3>
+<ul>
+  {% for artigo in perfil_usuario.artigo_set.all %}
+    <li><a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a></li>
+  {% empty %}
+    <li>Nenhum artigo publicado ainda.</li>
+  {% endfor %}
+</ul>
 {% endblock %}

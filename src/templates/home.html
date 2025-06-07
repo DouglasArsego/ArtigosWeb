@@ -1,94 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artigos Web - Plataforma Colaborativa</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Load static files -->
-  {% load static %}
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1>Artigos Web</h1>
-      <nav>
-        <a href="{% url 'sobre' %}">Principal</a>
-        <a href="{% url 'lista_artigos' %}">Artigos</a>
-        <a href="{% url 'dicas' %}">Dicas</a>
-        <a href="{% url 'noticias' %}">Notícias</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Registrar</a>
-      </nav>
-    </div>
-  </header>
+<html>
+  <head>
+    <title>Artigos Web</title>
+  </head>
+  <body>
+    <h1>Bem-vindo ao Artigos Web</h1>
+    <p>Colabore, escreva e publique artigos com outros usuários.</p>
 
-  <main>
-    <div class="container">
-      <!-- Hero Section -->
-      <section class="home-hero">
-        <h1>Bem-vindo ao Artigos Web</h1>
-        <p>Uma plataforma colaborativa onde você pode escrever, editar e publicar artigos em conjunto com outros usuários. Transforme suas ideias em conteúdo de qualidade através da colaboração.</p>
-        <div class="home-cta">
-          <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Começar Agora</a>
-          <a href="{% url 'lista_artigos' %}" class="btn btn-outline btn-lg">Explorar Artigos</a>
-        </div>
-      </section>
-
-      <!-- Features Section -->
-      <section class="home-features">
-        <div class="feature-card">
-          <div class="feature-icon">✍️</div>
-          <h3>Escrita Colaborativa</h3>
-          <p>Trabalhe em conjunto com outros autores para criar artigos de alta qualidade. Compartilhe conhecimento e aprenda com a comunidade.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Controle de Acesso</h3>
-          <p>Mantenha controle total sobre seus artigos. Aprove colaboradores e gerencie permissões de edição de forma segura.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">📚</div>
-          <h3>Biblioteca de Conhecimento</h3>
-          <p>Acesse uma vasta coleção de artigos criados pela comunidade. Encontre conteúdo relevante e contribua com seu expertise.</p>
-        </div>
-      </section>
-
-      <!-- Stats Section -->
-      <section class="home-stats">
-        <div class="container">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <h4>500+</h4>
-              <p>Artigos Publicados</p>
-            </div>
-            <div class="stat-item">
-              <h4>150+</h4>
-              <p>Autores Ativos</p>
-            </div>
-            <div class="stat-item">
-              <h4>1000+</h4>
-              <p>Colaborações</p>
-            </div>
-            <div class="stat-item">
-              <h4>50+</h4>
-              <p>Áreas de Conhecimento</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-</body>
+    <nav>
+      <a href="/accounts/login/">Login</a> |
+      <a href="/accounts/register/">Cadastro</a> |
+      <a href="/admin/">Ir para o Admin</a>
+    </nav>
+  </body>
 </html>

@@ -1,68 +1,19 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Feed de Artigos - Artigos Web{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'artigos/css/feed.css' %}">
-{% endblock %}
 
 {% block content %}
-<div class="feed-container">
-  <div class="feed-header">
-    <h2 class="feed-title">Feed de Artigos</h2>
-    {% if user.is_authenticated %}
-      <a href="{% url 'criar_artigo' %}" class="btn btn-primary feed-create-btn">Criar novo artigo</a>
-    {% endif %}
-  </div>
-
-  {% if artigos %}
-    <ul class="feed-list">
-      {% for artigo in artigos %}
-        <li class="feed-item">
-          <div class="feed-item-content">
-            <h3 class="feed-item-title">
-              <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
-            </h3>
-            
-            <div class="feed-item-meta">
-              <div class="feed-item-author">
-                por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
-              </div>
-              <div class="feed-item-date">
-                {{ artigo.criado_em|date:"d/m/Y H:i" }}
-              </div>
-            </div>
-
-            {% if artigo.resumo %}
-              <div class="feed-item-excerpt">
-                {{ artigo.resumo|truncatewords:30 }}
-              </div>
-            {% endif %}
-
-            <a href="{% url 'detalhe_artigo' artigo.pk %}" class="feed-item-read-more">Ler mais →</a>
-          </div>
-          
-          {% if user == artigo.autor or user in artigo.colaboradores.all %}
-            <div class="feed-item-actions">
-              <a href="{% url 'editar_artigo' artigo.pk %}" class="btn btn-secondary btn-sm">Editar</a>
-              <a href="{% url 'detalhe_artigo' artigo.pk %}" class="btn btn-outline btn-sm">Ver detalhes</a>
-            </div>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <div class="feed-empty">
-      <div class="feed-empty-icon">📰</div>
-      <h3>Nenhum artigo no feed</h3>
-      <p>Seja o primeiro a criar um artigo e começar a conversa!</p>
-      {% if user.is_authenticated %}
-        <a href="{% url 'criar_artigo' %}" class="btn btn-primary">Criar primeiro artigo</a>
-      {% else %}
-        <a href="{% url 'register' %}" class="btn btn-primary">Registrar-se para criar artigos</a>
+<h2>Feed de Artigos</h2>
+<a href="{% url 'criar_artigo' %}">Criar novo artigo</a>
+<ul>
+  {% for artigo in artigos %}
+    <li>
+      <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
+      — por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
+      {% if user == artigo.autor or user in artigo.colaboradores.all %}
+        | <a href="{% url 'editar_artigo' artigo.pk %}">Editar</a>
       {% endif %}
-    </div>
-  {% endif %}
-</div>
+    </li>
+  {% empty %}
+    <li>Nenhum artigo encontrado.</li>
+  {% endfor %}
+</ul>
 {% endblock %}

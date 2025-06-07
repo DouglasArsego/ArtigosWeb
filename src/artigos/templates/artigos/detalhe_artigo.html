@@ -1,73 +1,36 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block title %}{{ object.titulo }} - Artigos Web{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'artigos/css/detalhe_artigo.css' %}">
-{% endblock %}
 
 {% block content %}
-<div class="article-detail-container">
-  <!-- Article Header -->
-  <div class="article-detail-header">
-    <h1 class="article-detail-title">{{ object.titulo }}</h1>
-    
-    <div class="article-detail-meta">
-      <div class="article-detail-author">
-        <div class="article-detail-avatar">
-          {{ object.autor.nome_completo|first|upper }}
-        </div>
-        <div class="article-detail-author-info">
-          <a href="{% url 'perfil_publico' object.autor.username %}" class="article-detail-author-name">
-            {{ object.autor.nome_completo }}
-          </a>
-          <div class="article-detail-date">
-            Publicado em {{ object.criado_em|date:"d/m/Y H:i" }}
-            {% if object.atualizado_em != object.criado_em %}
-              • Atualizado em {{ object.atualizado_em|date:"d/m/Y H:i" }}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      
-      <div class="article-detail-actions">
-        {% if user == object.autor or user in object.colaboradores.all %}
-          <a href="{% url 'editar_artigo' object.pk %}" class="btn btn-primary btn-sm">Editar</a>
-        {% endif %}
-      </div>
+  <h2>{{ object.titulo }}</h2>
+  <p><strong>Autor:</strong> {{ object.autor.username }}</p>
+
+  {% if user == object.autor or user in object.colaboradores.all %}
+    <div>
+      <h4>Conteúdo do artigo:</h4>
+      <div>{{ object.conteudo|safe }}</div>
+      <a href="{% url 'editar_artigo' object.pk %}">Editar</a>
     </div>
-  </div>
+  {% else %}
+    <div>
+      <h4>Resumo:</h4>
+      <p>{{ object.resumo }}</p>
+    </div>
 
-  <!-- Article Content -->
-  <div class="article-detail-content">
-    {% if user == object.autor or user in object.colaboradores.all %}
-      <h4 class="article-detail-section-title">Conteúdo do artigo</h4>
-      <div class="article-detail-text">{{ object.conteudo|safe }}</div>
-    {% else %}
-      <h4 class="article-detail-section-title">Resumo</h4>
-      {% if object.resumo %}
-        <div class="article-detail-text">{{ object.resumo }}</div>
-      {% else %}
-        <div class="article-detail-text">
-          <p class="text-muted">Este artigo não possui resumo disponível.</p>
-        </div>
-      {% endif %}
-
-      {% if user.is_authenticated %}
-        <div class="article-detail-collaboration">
-          <h4>Interessado em colaborar?</h4>
-          <p>Solicite acesso para colaborar neste artigo e contribuir com seu conhecimento.</p>
-          <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Solicitar Colaboração</button>
-          </form>
-        </div>
-      {% endif %}
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
+        {% csrf_token %}
+        <button type="submit">Solicitar Colaboração</button>
+      </form>
     {% endif %}
-  </div>
+  {% endif %}
 
-  <!-- Back Link -->
-  <a href="{% url 'lista_artigos' %}" class="article-detail-back">Voltar para a lista</a>
-</div>
+  <a href="{% url 'lista_artigos' %}">Voltar para a lista</a>
+
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 {% endblock %}

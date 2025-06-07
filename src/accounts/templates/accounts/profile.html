@@ -1,125 +1,54 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block title %}Perfil - Artigos Web{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
-{% endblock %}
+{% block title %}Perfil{% endblock %}
 
 {% block content %}
-<div class="profile-container">
-  <!-- Profile Header -->
-  <div class="profile-header">
-    <div class="profile-info">
-      <div class="profile-avatar">
-        {{ user.nome_completo|first|upper }}
-      </div>
-      
-      <div class="profile-details">
-        <h2>{{ user.nome_completo }}</h2>
-        <div class="profile-meta">
-          <div class="profile-meta-item">
-            <span class="profile-meta-label">Usuário:</span>
-            <span>{{ user.username }}</span>
-          </div>
-          <div class="profile-meta-item">
-            <span class="profile-meta-label">Email:</span>
-            <span>{{ user.email }}</span>
-          </div>
-          {% if user.formacao_academica %}
-          <div class="profile-meta-item">
-            <span class="profile-meta-label">Formação:</span>
-            <span>{{ user.formacao_academica }}</span>
-          </div>
-          {% endif %}
-          {% if user.biografia %}
-          <div class="profile-meta-item">
-            <span class="profile-meta-label">Biografia:</span>
-            <span>{{ user.biografia }}</span>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      
-      <div class="profile-actions">
-        <a href="{% url 'editar_perfil' %}" class="btn btn-primary">Editar Perfil</a>
-        <a href="{% url 'criar_artigo' %}" class="btn btn-success">Novo Artigo</a>
-      </div>
-    </div>
-  </div>
+<h2>Perfil de {{ user.username }}</h2>
+<p><strong>Nome completo:</strong> {{ user.nome_completo }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Formação Acadêmica:</strong> {{ user.formacao_academica }}</p>
+<p><strong>Biografia:</strong> {{ user.biografia }}</p>
+<a href="{% url 'editar_perfil' %}">Editar perfil</a>
 
-  <!-- My Articles Section -->
-  <div class="profile-section">
-    <h3>Meus Artigos</h3>
-    {% if meus_artigos %}
-      <ul class="article-list">
-        {% for artigo in meus_artigos %}
-          <li class="article-item">
-            <a href="{% url 'detalhe_artigo' artigo.id %}" class="article-title">{{ artigo.titulo }}</a>
-            <div class="article-meta">
-              <span class="text-muted text-small">Criado em {{ artigo.criado_em|date:"d/m/Y" }}</span>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="empty-state">
-        <p>Você ainda não criou nenhum artigo.</p>
-        <a href="{% url 'criar_artigo' %}" class="btn btn-primary">Criar primeiro artigo</a>
-      </div>
-    {% endif %}
-  </div>
 
-  <!-- Collaborations Section -->
-  <div class="profile-section">
-    <h3>Artigos em que sou colaborador</h3>
-    {% if colaboracoes %}
-      <ul class="article-list">
-        {% for artigo in colaboracoes %}
-          <li class="article-item">
-            <a href="{% url 'detalhe_artigo' artigo.id %}" class="article-title">{{ artigo.titulo }}</a>
-            <div class="article-author">
-              Autor: <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="empty-state">
-        <p>Você ainda não está colaborando em nenhum artigo.</p>
-        <a href="{% url 'lista_artigos' %}" class="btn btn-outline">Explorar artigos</a>
-      </div>
-    {% endif %}
-  </div>
+<h3>Meus Artigos</h3>
+<ul>
+    {% for artigo in meus_artigos %}
+        <li>
+            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
+        </li>
+    {% empty %}
+        <li>Você ainda não criou nenhum artigo.</li>
+    {% endfor %}
+</ul>
 
-  <!-- Collaboration Requests Section -->
-  <div class="profile-section">
-    <h3>Pedidos de Colaboração Recebidos</h3>
-    {% if pedidos_recebidos %}
-      <ul class="request-list">
-        {% for pedido in pedidos_recebidos %}
-          <li class="request-item">
-            <div class="request-content">
-              <strong><a href="{% url 'perfil_publico' pedido.solicitante.username %}">{{ pedido.solicitante.username }}</a></strong> 
-              pediu para colaborar no artigo 
-              <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
-            </div>
-            <div class="request-actions">
-              <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}">
+<h3>Artigos em que sou colaborador</h3>
+<ul>
+    {% for artigo in colaboracoes %}
+        <li>
+            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
+            — Autor: <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
+        </li>
+    {% empty %}
+        <li>Você ainda não está colaborando em nenhum artigo.</li>
+    {% endfor %}
+</ul>
+
+
+<h3>Pedidos de Colaboração Recebidos</h3>
+<ul>
+    {% for pedido in pedidos_recebidos %}
+        <li>
+            <strong><a href="{% url 'perfil_publico' pedido.solicitante.username %}">{{ pedido.solicitante.username }}</a></strong> pediu para colaborar no artigo
+            <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
+            <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit" name="decisao" value="aceitar" class="btn btn-success btn-sm">Aceitar</button>
-                <button type="submit" name="decisao" value="recusar" class="btn btn-danger btn-sm">Recusar</button>
-              </form>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="empty-state">
-        <p>Você não possui pedidos pendentes de colaboração.</p>
-      </div>
-    {% endif %}
-  </div>
-</div>
+                <button type="submit" name="decisao" value="aceitar">Aceitar</button>
+                <button type="submit" name="decisao" value="recusar">Recusar</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>Você não possui pedidos pendentes de colaboração.</li>
+    {% endfor %}
+</ul>
 {% endblock %}
