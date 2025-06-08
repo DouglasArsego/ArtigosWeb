@@ -1,12 +1,69 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Artigos Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+</head>
+<body class="gradient-bg">
+    <div class="min-vh-100 d-flex flex-column">
+        <header class="py-5">
+            <div class="container text-center">
+                <h1 class="main-title">Artigos Web</h1>
+            </div>
+        </header>
 
-{% block title %}Login{% endblock %}
+        <main class="flex-grow-1 d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="auth-box bg-white p-4 p-md-5 rounded-4 shadow">
+                            <h2 class="text-center mb-4">Login</h2>
+                            
+                            <form method="post" class="mb-4">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    {{ form.username.label_tag }}
+                                    {{ form.username }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ form.password.label_tag }}
+                                    {{ form.password }}
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Entrar
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <span class="me-2">Não possui conta?</span>
+                                <a href="/accounts/register/" class="btn btn-outline-primary">
+                                    Cadastre-se agora mesmo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Entrar</button>
-  </form>
-{% endblock %}
+        <!-- Footer -->
+        <footer class="py-3 mt-auto">
+            <div class="container text-center">
+                <nav class="footer-nav">
+                    <a href="/admin/" class="admin-link">
+                        <i class="fas fa-cog me-1"></i>Área do Administrador
+                    </a>
+                </nav>
+                <p class="copyright mt-2 mb-0">&copy; {% now "Y" %} Artigos Web - Plataforma de Colaboração Científica</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
