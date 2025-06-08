@@ -1,17 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Sobre - Artigos Web{% endblock %}
 
-{% block content %}
-  <h1>Sobre o Artigos Web</h1>
-  <p>O <strong>Artigos Web</strong> é uma plataforma colaborativa onde usuários podem escrever, editar e publicar artigos em conjunto.</p>
-  
-  <h2>Objetivos do Projeto</h2>
-  <ul>
-    <li>Fomentar a escrita colaborativa entre usuários.</li>
-    <li>Promover coautoria de textos em tempo real.</li>
-    <li>Permitir controle e aprovação de colaborações.</li>
-  </ul>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock %}
 
-  <p>Projeto acadêmico desenvolvido por Douglas Arsego.</p>
+{% block content %}
+<div class="sobre-content">
+    <h1>Sobre o Artigos Web</h1>
+    <p>O <strong>Artigos Web</strong> é uma plataforma colaborativa onde usuários podem escrever, editar e publicar artigos em conjunto.</p>
+    
+    <h2>Objetivos do Projeto</h2>
+    <ul>
+        <li>Fomentar a escrita colaborativa entre usuários.</li>
+        <li>Promover coautoria de textos em tempo real.</li>
+        <li>Permitir controle e aprovação de colaborações.</li>
+    </ul>
+
+    <p>Projeto acadêmico desenvolvido por Douglas Arsego.</p>
+</div>
 {% endblock %}
