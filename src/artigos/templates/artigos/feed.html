@@ -1,19 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Artigos - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/feed.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Feed de Artigos</h2>
-<a href="{% url 'criar_artigo' %}">Criar novo artigo</a>
-<ul>
-  {% for artigo in artigos %}
-    <li>
-      <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
-      — por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
-      {% if user == artigo.autor or user in artigo.colaboradores.all %}
-        | <a href="{% url 'editar_artigo' artigo.pk %}">Editar</a>
-      {% endif %}
-    </li>
-  {% empty %}
-    <li>Nenhum artigo encontrado.</li>
-  {% endfor %}
-</ul>
+<div class="artigos-feed">
+    <h2>Lista de Artigos</h2>
+    <a href="{% url 'criar_artigo' %}" class="criar-artigo-btn">
+        <i class="fas fa-plus-circle me-1"></i>Criar Novo Artigo
+    </a>
+    
+    <ul class="artigos-lista">
+        {% for artigo in artigos %}
+            <li>
+                <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
+                <span class="autor">— por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a></span>
+                {% if user == artigo.autor or user in artigo.colaboradores.all %}
+                    <a href="{% url 'editar_artigo' artigo.pk %}" class="editar-link">
+                        <i class="fas fa-edit me-1"></i>Editar
+                    </a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="empty-message">Nenhum artigo encontrado.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

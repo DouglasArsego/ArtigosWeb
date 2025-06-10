@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2>{{ object.titulo }}</h2>
-  <p><strong>Autor:</strong> {{ object.autor.username }}</p>
+  <span class="autor"><strong>Autor: <strong> <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a></span>
 
   {% if user == object.autor or user in object.colaboradores.all %}
     <div>

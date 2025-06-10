@@ -1,8 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Dicas para escrever artigos{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/dicas.css' %}">
+{% endblock %}
+
 {% block content %}
-<h2>Dicas para Construir um Bom Artigo</h2>
-<p>Conteúdos e orientações para ajudar os usuários a criar artigos de qualidade.</p>
+<div class="dicas-content">
+    <h2>Dicas para Construir um Bom Artigo</h2>
+    <p>Para escrever um bom artigo científico, é crucial seguir uma estrutura lógica e consistente, utilizando uma linguagem clara e precisa, e garantindo que a pesquisa seja rigorosa e bem fundamentada. É fundamental escolher um tópico relevante, realizar uma revisão bibliográfica completa, definir a pergunta de pesquisa, planejar a metodologia e estruturar o artigo em seções bem definidas.</p>
+    
+    <div class="dicas-lista">
+        <h3>Passos para escrever um bom artigo científico:</h3>
+        
+        <p><strong>Escolha do Tópico:</strong> O tema deve ser relevante, original e com espaço para investigação.</p>
+        
+        <p><strong>Revisão Bibliográfica:</strong> Uma revisão abrangente ajuda a contextualizar o problema, identificar lacunas e construir uma base teórica sólida.</p>
+        
+        <p><strong>Pergunta de Pesquisa:</strong> Formule uma questão clara e específica que direcionará a investigação.</p>
+        
+        <p><strong>Metodologia:</strong> Descreva em detalhes como a pesquisa foi conduzida, incluindo a coleta de dados, análise estatística e demais procedimentos.</p>
+        
+        <h3>Estrutura do Artigo:</h3>
+        <ul>
+            <li><strong>Título:</strong> Preciso, conciso e atrativo.</li>
+            <li><strong>Abstract (Resumo):</strong> Síntese do artigo, incluindo objetivos, métodos, resultados e conclusões.</li>
+            <li><strong>Introdução:</strong> Contextualiza o problema, apresenta a pergunta de pesquisa e a relevância da pesquisa.</li>
+            <li><strong>Desenvolvimento:</strong> Apresenta a revisão bibliográfica, a metodologia e os resultados da pesquisa.</li>
+            <li><strong>Discussão:</strong> Analisa os resultados em relação à revisão bibliográfica, compara com outras pesquisas e identifica as limitações do estudo.</li>
+            <li><strong>Conclusão:</strong> Resume os principais achados, responde à pergunta de pesquisa e indica as implicações da pesquisa.</li>
+            <li><strong>Referências Bibliográficas:</strong> Lista de fontes utilizadas na pesquisa, seguindo um estilo específico.</li>
+        </ul>
+        
+        <p><strong>Linguagem:</strong> Utilize uma linguagem clara, objetiva e precisa, evitando jargões desnecessários.</p>
+        
+        <p><strong>Revisão e Edição:</strong> Revise o texto cuidadosamente para corrigir erros de ortografia, gramática e redação.</p>
+        
+        <p><strong>Diretrizes da Revista:</strong> Leia atentamente as diretrizes da revista para a qual deseja submeter o artigo.</p>
+        
+        <p><strong>Submissão:</strong> Após concluir todas as etapas, submeta o artigo para avaliação.</p>
+        
+        <p><strong>Lidar com os Revisores:</strong> Tenha em mente que é comum que os revisores solicitem revisões.</p>
+    </div>
+</div>
 {% endblock %}

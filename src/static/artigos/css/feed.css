@@ -1,0 +1,87 @@
+
+.content-container h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.criar-artigo-btn {
+    display: block;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-medium);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    max-width: 200px;
+}
+
+.criar-artigo-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.artigos-lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.artigos-lista li {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--light-gray);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.artigos-lista li:hover {
+    background-color: #e0e0e0;
+    transform: translateX(5px);
+}
+
+.artigos-lista a {
+    color: var(--primary-medium);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.artigos-lista a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.artigos-lista .autor {
+    color: var(--dark-blue);
+    font-style: italic;
+}
+
+.artigos-lista .editar-link {
+    color: var(--primary-dark);
+    margin-left: 0.5rem;
+}
+
+.artigos-lista .empty-message {
+    color: var(--dark-blue);
+    font-style: italic;
+    padding: 1rem;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .artigos-lista li {
+        padding: 0.75rem;
+    }
+}

@@ -1,0 +1,55 @@
+
+.content-container h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.content-container p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.dicas-lista {
+    margin-bottom: 2rem;
+}
+
+.dicas-lista h3 {
+    color: var(--primary-medium);
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.dicas-lista ul {
+    padding-left: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.dicas-lista li {
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.dicas-lista strong {
+    color: var(--primary-dark);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .content-container p,
+    .dicas-lista li {
+        font-size: 1rem;
+    }
+    
+    .dicas-lista h3 {
+        font-size: 1.2rem;
+    }
+}
