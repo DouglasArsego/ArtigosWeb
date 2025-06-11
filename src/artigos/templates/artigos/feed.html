@@ -11,19 +11,23 @@
 <div class="artigos-feed">
     <h2>Lista de Artigos</h2>
     <a href="{% url 'criar_artigo' %}" class="criar-artigo-btn">
-        <i class="fas fa-plus-circle me-1"></i>Criar Novo Artigo
+        <i class="fas fa-plus-circle me-1"></i>Criar novo artigo
     </a>
     
     <ul class="artigos-lista">
         {% for artigo in artigos %}
-            <li>
-                <a href="{% url 'detalhe_artigo' artigo.pk %}">{{ artigo.titulo }}</a>
-                <span class="autor">— por <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a></span>
-                {% if user == artigo.autor or user in artigo.colaboradores.all %}
-                    <a href="{% url 'editar_artigo' artigo.pk %}" class="editar-link">
-                        <i class="fas fa-edit me-1"></i>Editar
-                    </a>
-                {% endif %}
+            <li onclick="window.location.href='{% url 'detalhe_artigo' artigo.pk %}'" style="cursor: pointer;">
+                <div class="artigo-content">
+                    <span class="artigo-titulo">{{ artigo.titulo }}</span>
+                    <span class="artigo-meta">
+                        <span class="autor">— por {{ artigo.autor.username }}</span>
+                        {% if user == artigo.autor or user in artigo.colaboradores.all %}
+                            <span class="editar-link" onclick="event.stopPropagation(); window.location.href='{% url 'editar_artigo' artigo.pk %}'">
+                                <i class="fas fa-edit me-1"></i>Editar
+                            </span>
+                        {% endif %}
+                    </span>
+                </div>
             </li>
         {% empty %}
             <li class="empty-message">Nenhum artigo encontrado.</li>

@@ -1,36 +1,70 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ object.titulo }} - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/detalhe_artigo.css' %}">
+{% endblock %}
 
 {% block content %}
-  <h2>{{ object.titulo }}</h2>
-  <span class="autor"><strong>Autor: <strong> <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a></span>
-
-  {% if user == object.autor or user in object.colaboradores.all %}
-    <div>
-      <h4>Conteúdo do artigo:</h4>
-      <div>{{ object.conteudo|safe }}</div>
-      <a href="{% url 'editar_artigo' object.pk %}">Editar</a>
+<div class="detalhe-artigo">
+    <h2>{{ object.titulo }}</h2>
+    
+    <div class="autoria">
+        <span class="autor">
+            <i class="fas fa-user-edit me-1"></i>
+            <strong>Autor:</strong> 
+            <a href="{% url 'perfil_publico' object.autor.username %}">{{ object.autor.username }}</a>
+        </span>
+        
+        {% if object.colaboradores.all %}
+        <span class="colaboradores">
+            <i class="fas fa-users me-1"></i>
+            <strong>Colaboradores:</strong>
+            {% for colaborador in object.colaboradores.all %}
+                <a href="{% url 'perfil_publico' colaborador.username %}">{{ colaborador.username }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </span>
+        {% endif %}
     </div>
-  {% else %}
-    <div>
-      <h4>Resumo:</h4>
-      <p>{{ object.resumo }}</p>
-    </div>
 
-    {% if user.is_authenticated %}
-      <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
-        {% csrf_token %}
-        <button type="submit">Solicitar Colaboração</button>
-      </form>
+    {% if user == object.autor or user in object.colaboradores.all %}
+        <div class="conteudo-artigo">
+            <h4><i class="fas fa-file-alt me-1"></i>Conteúdo do artigo:</h4>
+            <div>{{ object.conteudo|safe }}</div>
+        </div>
+    {% else %}
+        <div class="resumo-artigo">
+            <h4><i class="fas fa-info-circle me-1"></i>Proposta de Pesquisa:</h4>
+            <p>{{ object.resumo }}</p>
+        </div>
     {% endif %}
-  {% endif %}
 
-  <a href="{% url 'lista_artigos' %}">Voltar para a lista</a>
+    <div class="botoes-artigo">
+        {% if user == object.autor or user in object.colaboradores.all %}
+            <a href="{% url 'editar_artigo' object.pk %}" class="btn-editar">
+                <i class="fas fa-edit me-1"></i>Editar Artigo
+            </a>
+        {% elif user.is_authenticated %}
+            <form method="post" action="{% url 'pedido_colaboracao_criar' artigo_id=object.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-colaboracao">
+                    <i class="fas fa-handshake me-1"></i>Solicitar Colaboração
+                </button>
+            </form>
+        {% endif %}
+        <a href="{% url 'lista_artigos' %}" class="voltar">
+            <i class="fas fa-arrow-left me-1"></i>Voltar para a lista
+        </a>
+    </div>
 
-  {% if messages %}
-    <ul>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
 {% endblock %}
