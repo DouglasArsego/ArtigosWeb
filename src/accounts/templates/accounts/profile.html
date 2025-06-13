@@ -1,54 +1,111 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Perfil{% endblock %}
+{% block title %}Meu Perfil - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Perfil de {{ user.username }}</h2>
-<p><strong>Nome completo:</strong> {{ user.nome_completo }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Formação Acadêmica:</strong> {{ user.formacao_academica }}</p>
-<p><strong>Biografia:</strong> {{ user.biografia }}</p>
-<a href="{% url 'editar_perfil' %}">Editar perfil</a>
+<div class="profile-container">
+    <div class="profile-header">
+        <h2><i class="fas fa-user-circle me-1"></i>Meu Perfil</h2>
+    </div>
+    
+    <div class="profile-section">
+        <div class="info-field">
+            <strong><i class="fas fa-user"></i>Nome completo:</strong>
+            <span>{{ user.nome_completo }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-envelope"></i>Email:</strong>
+            <span>{{ user.email }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-graduation-cap"></i>Formação Acadêmica:</strong>
+            <span>{{ user.formacao_academica }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-book-open"></i>Biografia:</strong>
+            <span>{{ user.biografia }}</span>
+        </div>
+    </div>
+    
+    <div class="profile-actions">
+        <a href="{% url 'editar_perfil' %}" class="btn-edit">
+            <i class="fas fa-edit"></i> Editar perfil
+        </a>
+    </div>
+    
+    <div class="profile-section">
+        <h3><i class="fas fa-file-alt"></i> Meus Artigos</h3>
+        <ul class="articles-list">
+            {% for artigo in meus_artigos %}
+                <li onclick="window.location.href='{% url 'detalhe_artigo' artigo.id %}'">
+                    <a>{{ artigo.titulo }}</a>
+                </li>
+            {% empty %}
+                <li class="empty-message">Você ainda não criou nenhum artigo.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="profile-section">
+        <h3><i class="fas fa-users"></i> Artigos em que sou colaborador</h3>
+        <ul class="articles-list">
+            {% for artigo in colaboracoes %}
+                <li onclick="window.location.href='{% url 'detalhe_artigo' artigo.id %}'">
+                    <a>{{ artigo.titulo }}</a>
+                    <span class="collaborator-info">
+                        — Autor: <a href="{% url 'perfil_publico' artigo.autor.username %}" onclick="event.stopPropagation()">
+                            {{ artigo.autor.username }}
+                        </a>
+                    </span>
+                </li>
+            {% empty %}
+                <li class="empty-message">Você ainda não está colaborando em nenhum artigo.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="profile-section">
+        <h3><i class="fas fa-handshake"></i> Pedidos de Colaboração Recebidos</h3>
+        <ul class="articles-list">
+            {% for pedido in pedidos_recebidos %}
+                <li class="collaboration-request">
+                    <strong><a href="{% url 'perfil_publico' pedido.solicitante.username %}">{{ pedido.solicitante.username }}</a></strong> 
+                    pediu para colaborar no artigo 
+                    <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
+                    
+                    <div class="collaboration-actions">
+                        <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" name="decisao" value="aceitar" class="btn-accept">
+                                <i class="fas fa-check"></i> Aceitar
+                            </button>
+                            <button type="submit" name="decisao" value="recusar" class="btn-reject">
+                                <i class="fas fa-times"></i> Recusar
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="empty-message">Você não possui pedidos pendentes de colaboração.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
-
-<h3>Meus Artigos</h3>
-<ul>
-    {% for artigo in meus_artigos %}
-        <li>
-            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
-        </li>
-    {% empty %}
-        <li>Você ainda não criou nenhum artigo.</li>
-    {% endfor %}
-</ul>
-
-<h3>Artigos em que sou colaborador</h3>
-<ul>
-    {% for artigo in colaboracoes %}
-        <li>
-            <a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a>
-            — Autor: <a href="{% url 'perfil_publico' artigo.autor.username %}">{{ artigo.autor.username }}</a>
-        </li>
-    {% empty %}
-        <li>Você ainda não está colaborando em nenhum artigo.</li>
-    {% endfor %}
-</ul>
-
-
-<h3>Pedidos de Colaboração Recebidos</h3>
-<ul>
-    {% for pedido in pedidos_recebidos %}
-        <li>
-            <strong><a href="{% url 'perfil_publico' pedido.solicitante.username %}">{{ pedido.solicitante.username }}</a></strong> pediu para colaborar no artigo
-            <a href="{% url 'detalhe_artigo' pedido.artigo.id %}">{{ pedido.artigo.titulo }}</a>.
-            <form method="post" action="{% url 'pedido_colaboracao_decidir' pedido.id %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" name="decisao" value="aceitar">Aceitar</button>
-                <button type="submit" name="decisao" value="recusar">Recusar</button>
-            </form>
-        </li>
-    {% empty %}
-        <li>Você não possui pedidos pendentes de colaboração.</li>
-    {% endfor %}
-</ul>
+<script>
+// Garante que os links dentro dos itens clicáveis funcionem corretamente
+document.querySelectorAll('.articles-list li a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+</script>
 {% endblock %}

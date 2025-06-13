@@ -1,13 +1,51 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Editar Perfil{% endblock %}
+{% block title %}Editar Perfil - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/editar_perfil.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Editar Perfil</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar alterações</button>
-</form>
-<a href="{% url 'profile' %}">Cancelar</a>
+<div class="edit-profile-container">
+    <h2 class="edit-profile-title"><i class="fas fa-user-edit me-1"></i>Editar Perfil</h2>
+    
+    <form method="post" class="edit-profile-form">
+        {% csrf_token %}
+        
+        <p>
+            <label for="{{ form.nome_completo.id_for_label }}"><i class="fas fa-user"></i>Nome completo:</label>
+            {{ form.nome_completo }}
+            {{ form.nome_completo.errors }}
+        </p>
+        
+        <p>
+            <label for="{{ form.email.id_for_label }}"><i class="fas fa-envelope"></i>Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </p>
+        
+        <p>
+            <label for="{{ form.formacao_academica.id_for_label }}"><i class="fas fa-graduation-cap"></i>Formação acadêmica:</label>
+            {{ form.formacao_academica }}
+            {{ form.formacao_academica.errors }}
+        </p>
+        
+        <p>
+            <label for="{{ form.biografia.id_for_label }}"><i class="fas fa-book-open"></i>Biografia:</label>
+            {{ form.biografia }}
+            {{ form.biografia.errors }}
+        </p>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn-save">
+                <i class="fas fa-save"></i> Salvar alterações
+            </button>
+            <a href="{% url 'profile' %}" class="btn-cancel">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock %}

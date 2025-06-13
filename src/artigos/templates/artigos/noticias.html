@@ -1,8 +1,95 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Notícias sobre publicações{% endblock %}
+{% block title %}Notícias Acadêmicas - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/noticias.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Notícias sobre Revistas e Publicações</h2>
-<p>Aqui serão exibidas notícias relevantes do meio acadêmico e científico.</p>
+<div class="content-container">
+    <h2><i class="fas fa-newspaper me-1"></i>Notícias Acadêmicas</h2>
+    <p class="noticias-intro">Fique atualizado com as últimas oportunidades de publicação, chamadas para artigos e novidades do mundo científico.</p>
+    
+    <div class="noticias-container">
+        
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Chamada para Artigos">Chamada para Artigos</span>
+                <h3 class="noticia-titulo">SciELO Brasil abre chamada para edição especial</h3>
+                <p class="noticia-resumo">Submissões abertas até 30/09/2025 para artigos em Ciências da Saúde. Publicação prevista para dezembro/2025.</p>
+                <span class="noticia-data">Publicado em: 15/06/2025</span>
+                <a href="https://www.scielo.br" target="_blank" class="noticia-link">
+                    Acessar chamada <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Prêmio">Prêmio</span>
+                <h3 class="noticia-titulo">CAPES anuncia prêmio para melhores artigos 2025</h3>
+                <p class="noticia-resumo">Inscrições até 15/08 para artigos publicados por pesquisadores de instituições brasileiras.</p>
+                <span class="noticia-data">Publicado em: 10/06/2025</span>
+                <a href="https://www.capes.gov.br" target="_blank" class="noticia-link">
+                    Edital completo <i class="fas fa-file-alt"></i>
+                </a>
+            </div>
+        </div>
+        
+  
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Evento">Evento</span>
+                <h3 class="noticia-titulo">SBPC anuncia congresso nacional em São Paulo</h3>
+                <p class="noticia-resumo">Submissão de trabalhos até 20/07. Evento ocorrerá em outubro/2025.</p>
+                <span class="noticia-data">Publicado em: 05/06/2025</span>
+                <a href="https://www.sbpcnet.org.br" target="_blank" class="noticia-link">
+                    Submeter trabalho <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Novo Periódico">Novo Periódico</span>
+                <h3 class="noticia-titulo">UFMG lança revista de Humanidades Digitais</h3>
+                <p class="noticia-resumo">Primeira chamada para artigos com foco em metodologias digitais aplicadas às humanidades.</p>
+                <span class="noticia-data">Publicado em: 01/06/2025</span>
+                <a href="https://www.ufmg.br" target="_blank" class="noticia-link">
+                    Conhecer a revista <i class="fas fa-book-open"></i>
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Publicação">Publicação</span>
+                <h3 class="noticia-titulo">Pesquisa brasileira sobre dengue é destaque na Nature</h3>
+                <p class="noticia-resumo">Artigo de pesquisadores da USP ganha destaque em publicação internacional.</p>
+                <span class="noticia-data">Publicado em: 28/05/2025</span>
+                <a href="https://www.nature.com" target="_blank" class="noticia-link">
+                    Ler artigo <i class="fas fa-file-pdf"></i>
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="noticia-card">
+            <div class="noticia-corpo">
+                <span class="noticia-categoria" data-categoria="Financiamento">Financiamento</span>
+                <h3 class="noticia-titulo">FAPESP anuncia bolsas para publicação em revistas de alto impacto</h3>
+                <p class="noticia-resumo">Auxílio para pesquisadores de SP publicarem em periódicos Q1.</p>
+                <span class="noticia-data">Publicado em: 25/05/2025</span>
+                <a href="https://www.fapesp.br" target="_blank" class="noticia-link">
+                    Ver oportunidades <i class="fas fa-search-dollar"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,111 @@
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--pure-white);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-container h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-light);
+    text-align: center;
+}
+
+
+.form-container p {
+    margin-bottom: 1.5rem;
+}
+
+.form-container label {
+    display: block;
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus {
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(41, 128, 185, 0.25);
+}
+
+
+.django-ckeditor-widget {
+    width: 100% !important;
+}
+
+
+.form-container button[type="submit"] {
+    background-color: var(--primary-medium);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container a {
+    color: var(--primary-medium);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--light-gray);
+}
+
+.form-container a:hover {
+    color: var(--primary-dark);
+    background-color: #e0e0e0;
+    text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .form-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-container button[type="submit"],
+    .form-container a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.75rem;
+    }
+}

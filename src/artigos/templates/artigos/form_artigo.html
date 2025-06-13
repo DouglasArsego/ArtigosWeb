@@ -1,31 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %} - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'artigos/css/form_artigo.css' %}">
+{% endblock %}
 
 {% block content %}
-  <section class="form-container">
-    <h2>{% if form.instance.pk %}Editar Artigo{% else %}Criar Artigo{% endif %}</h2>
+<div class="content-container">
+    <section class="form-container">
+        <h2><i class="fas fa-{% if form.instance.pk %}edit{% else %}plus-circle{% endif %} me-1"></i>
+            {% if form.instance.pk %}Editar Artigo{% else %}Criar Novo Artigo{% endif %}
+        </h2>
 
-    <form method="post">
-      {% csrf_token %}
-      {{ form.media }}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
 
-      <p>
-        <label for="{{ form.titulo.id_for_label }}">Título:</label><br>
-        {{ form.titulo }}
-      </p>
+            <p>
+                <label for="{{ form.titulo.id_for_label }}"><i class="fas fa-heading me-1"></i>Título:</label>
+                {{ form.titulo }}
+            </p>
 
-      <p>
-        <label for="{{ form.resumo.id_for_label }}">Proposta de Pesquisa (visível publicamente):</label><br>
-        {{ form.resumo }}
-      </p>
+            <p>
+                <label for="{{ form.resumo.id_for_label }}"><i class="fas fa-search me-1"></i>Proposta de Pesquisa (visível publicamente):</label>
+                {{ form.resumo }}
+                <span class="form-text">Descreva brevemente o objetivo e relevância da pesquisa.</span>
+            </p>
 
-      <p>
-        <label for="{{ form.conteudo.id_for_label }}">Conteúdo do artigo (apenas para autor e colaboradores):</label><br>
-        {{ form.conteudo }}
-      </p>
+            <p>
+                <label for="{{ form.conteudo.id_for_label }}"><i class="fas fa-file-alt me-1"></i>Conteúdo do artigo (apenas para autor e colaboradores):</label>
+                {{ form.conteudo }}
+            </p>
 
-      <button type="submit">Salvar</button>
-    </form>
-
-    <p><a href="{% url 'lista_artigos' %}">Voltar para a lista</a></p>
-  </section>
+            <div class="form-actions">
+                <button type="submit">
+                    <i class="fas fa-save me-1"></i>Salvar
+                </button>
+                <a href="{% url 'lista_artigos' %}">
+                    <i class="fas fa-arrow-left me-1"></i>Voltar para a lista
+                </a>
+            </div>
+        </form>
+    </section>
+</div>
 {% endblock %}

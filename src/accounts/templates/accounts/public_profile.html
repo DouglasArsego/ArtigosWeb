@@ -1,19 +1,57 @@
 {% extends 'base.html' %}
-{% block title %}Perfil de {{ perfil_usuario.username }}{% endblock %}
+{% load static %}
+
+{% block title %}Perfil de {{ perfil_usuario.username }} - Artigos Web{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/public_profile.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>Perfil público de {{ perfil_usuario.username }}</h2>
-<p><strong>Nome completo:</strong> {{ perfil_usuario.nome_completo }}</p>
-<p><strong>Email:</strong> {{ perfil_usuario.email }}</p>
-<p><strong>Formação acadêmica:</strong> {{ perfil_usuario.formacao_academica }}</p>
-<p><strong>Biografia:</strong> {{ perfil_usuario.biografia }}</p>
-
-<h3>Artigos publicados</h3>
-<ul>
-  {% for artigo in perfil_usuario.artigo_set.all %}
-    <li><a href="{% url 'detalhe_artigo' artigo.id %}">{{ artigo.titulo }}</a></li>
-  {% empty %}
-    <li>Nenhum artigo publicado ainda.</li>
-  {% endfor %}
-</ul>
+<div class="profile-container">
+    <div class="profile-header">
+        <h2><i class="fas fa-user-circle me-1"></i>Perfil público de {{ perfil_usuario.username }}</h2>
+    </div>
+    
+    <div class="profile-info">
+        <div class="info-field">
+            <strong><i class="fas fa-user"></i>Nome completo:</strong>
+            <span>{{ perfil_usuario.nome_completo }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-envelope"></i>Email:</strong>
+            <span>{{ perfil_usuario.email }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-graduation-cap"></i>Formação acadêmica:</strong>
+            <span>{{ perfil_usuario.formacao_academica }}</span>
+        </div>
+        
+        <div class="info-field">
+            <strong><i class="fas fa-book-open"></i>Biografia:</strong>
+            <span>{{ perfil_usuario.biografia }}</span>
+        </div>
+    </div>
+    
+    <div class="profile-articles">
+        <h3>
+            <i class="fas fa-file-alt me-1"></i>Artigos publicados
+            <span class="articles-count">{{ perfil_usuario.artigo_set.count }}</span>
+        </h3>
+        
+        <ul class="articles-list">
+            {% for artigo in perfil_usuario.artigo_set.all %}
+                <li>
+                    <a href="{% url 'detalhe_artigo' artigo.id %}">
+                        {{ artigo.titulo }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="empty-message">Nenhum artigo publicado ainda.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

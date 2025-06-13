@@ -1,0 +1,205 @@
+
+.content-container h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-light);
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+
+.noticias-intro {
+    text-align: center;
+    color: var(--dark-blue);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+
+.noticias-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+
+.noticia-card {
+    background-color: var(--pure-white);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    min-height: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+.noticia-corpo {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.noticia-categoria {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+.noticia-categoria[data-categoria="Chamada para Artigos"],
+.noticia-categoria:not([data-categoria]) {
+    background-color: var(--primary-medium);
+    color: white;
+}
+
+.noticia-categoria[data-categoria="Prêmio"] {
+    background-color: #FFD700;
+    color: #333;
+}
+
+.noticia-categoria[data-categoria="Evento"] {
+    background-color: #228B22;
+    color: white;
+}
+
+.noticia-categoria[data-categoria="Novo Periódico"] {
+    background-color: #9932CC;
+    color: white;
+}
+
+.noticia-categoria[data-categoria="Publicação"] {
+    background-color: #D2691E;
+    color: white;
+}
+
+.noticia-categoria[data-categoria="Financiamento"] {
+    background-color: #008B8B;
+    color: white;
+}
+
+
+.noticia-titulo {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.noticia-titulo::before {
+    content: "\f1ea";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+    color: var(--primary-light);
+    font-size: 0.9em;
+}
+
+
+.noticia-resumo {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+
+.noticia-data {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+
+.noticia-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-medium);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+}
+
+.noticia-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.noticia-link i {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+}
+
+
+
+@media (max-width: 992px) {
+    .noticias-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .content-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .noticias-intro {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .noticias-container {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .noticia-card {
+        padding: 1.2rem;
+        min-height: auto;
+    }
+    
+    .noticia-titulo {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-container h2 {
+        font-size: 1.6rem;
+    }
+    
+    .noticia-categoria {
+        font-size: 0.7rem;
+    }
+    
+    .noticia-link {
+        font-size: 0.9rem;
+    }
+}

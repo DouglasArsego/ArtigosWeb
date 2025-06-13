@@ -1,0 +1,283 @@
+/* Container principal */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--pure-white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.profile-header h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Seções de informações */
+.profile-section {
+    margin-bottom: 3rem;
+}
+
+.profile-section h3 {
+    color: var(--primary-medium);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+}
+
+.profile-section h3 i {
+    margin-right: 0.5rem;
+}
+
+/* Campos de informação */
+.info-field {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    background-color: var(--light-gray);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.info-field:hover {
+    background-color: #e0e0e0;
+    transform: translateX(5px);
+}
+
+.info-field strong {
+    color: var(--primary-dark);
+    font-weight: 600;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.info-field strong i {
+    margin-right: 0.5rem;
+    width: 20px;
+    text-align: center;
+}
+
+.info-field span {
+    color: var(--dark-blue);
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Listas de artigos */
+.articles-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: var(--primary-medium);
+}
+
+.articles-list li {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--light-gray);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.articles-list li:hover {
+    background-color: #e0e0e0;
+    transform: translateX(5px);
+}
+
+.articles-list a {
+    color: var(--primary-medium);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.articles-list a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.articles-list .empty-message {
+    color: var(--dark-blue);
+    font-style: italic;
+    padding: 1rem;
+    text-align: center;
+    cursor: default;
+}
+
+/* Links de colaborador */
+.collaborator-info {
+    margin-left: 0.5rem;
+    font-style: italic;
+    color: var(--dark-blue);
+}
+
+.collaborator-info a {
+    color: var(--dark-blue);
+}
+
+.collaborator-info a:hover {
+    text-decoration: underline;
+}
+
+/* Botões */
+.profile-actions {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-medium);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit i {
+    margin-right: 0.5rem;
+}
+
+/* Pedidos de colaboração */
+.collaboration-request {
+    position: relative;
+    padding-right: 200px;
+}
+
+.collaboration-actions {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-accept {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-accept:hover {
+    background-color: #218838;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .collaboration-request {
+        padding-right: 0;
+        padding-bottom: 3.5rem;
+    }
+    
+    .collaboration-actions {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 1.5rem;
+    }
+    
+    .info-field {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .info-field strong {
+        margin-bottom: 0.5rem;
+        min-width: 100%;
+    }
+    
+    .profile-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .collaboration-actions {
+        position: static;
+        margin-top: 0.5rem;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 1rem;
+    }
+    
+    .profile-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .articles-list li,
+    .info-field {
+        padding: 0.9rem;
+    }
+    
+    .btn-edit {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .collaboration-actions {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .btn-accept,
+    .btn-reject {
+        width: 100%;
+    }
+}
